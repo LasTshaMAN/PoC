@@ -1,0 +1,42 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "chai/chai.d.ts": {
+      "commit": "d79cd56465f9ed53172dc1617c863a164b0fd7fb"
+    },
+    "assertion-error/assertion-error.d.ts": {
+      "commit": "d79cd56465f9ed53172dc1617c863a164b0fd7fb"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "964424bd7eb46b382a4661f5e62c6b242d17a99f"
+    },
+    "node/node.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    },
+    "bluebird/bluebird.d.ts": {
+      "commit": "47d3b90d02cd2e80b534e7f0c66e1873f4f3424c"
+    },
+    "supertest/supertest.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    },
+    "superagent/superagent.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    },
+    "express/express.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    },
+    "mime/mime.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    },
+    "express-serve-static-core/express-serve-static-core.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "26f276c0032b2c27647e69097ca20eb7f2b1e21b"
+    }
+  }
+}
