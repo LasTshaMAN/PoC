@@ -10,13 +10,9 @@
     "rootDir": ".",
     "outDir": "./dist"
   },
-  "include": [
-    "./src/*",
-    "./test/*",
-    "./typings/*"       
-  ],
-  "exclude": [
-    "./node_modules",
-    ".vscode"
+  "includes": [
+    "./src/**/*",
+    "./test/**/*",
+    "./typings/**/*"
   ]
 }

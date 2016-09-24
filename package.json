@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "compile": "tsc",    
     "pretest": "cleandir ./dist",
     "test": "tsc && mocha ./dist/test/*.js"
   },
@@ -10,8 +11,9 @@
     "chai": "^3.5.0",
     "clean-dir": "^1.0.3",
     "mocha": "^3.0.2",
-    "supertest": "^2.0.0",
-    "tslint": "^3.15.1"
+    "promisify-supertest": "^1.0.0",
+    "request": "^2.75.0",
+    "typescript": "^2.0.3"
   },
   "dependencies": {
     "express": "^4.14.0"
