@@ -1,15 +1,13 @@
 import * as express from "express";
-import { Request } from '~express/lib/request';
-import { Response } from '~express/lib/response';
 
 export default class RestServer {
 
-    readonly app: express.Application;
+    private readonly app: express.Application;
 
     constructor() {
         this.app = express();
 
-        this.app.use('/hello', (req: Request, res: Response, next: express.NextFunction) => {
+        this.app.use('/hello', (req, res) => {
             res.status(200);
             res.contentType('json');
             res.json({ x: 3 });

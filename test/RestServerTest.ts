@@ -1,8 +1,8 @@
 import * as request from "request";
 import { expect } from 'chai';
 import { IncomingMessage, createServer } from "http";
+import RestServer from "../src/RestServer";
 
-import RestServer from '../src/RestServer';
 
 describe('Testing REST API', () => {
 
