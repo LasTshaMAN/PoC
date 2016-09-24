@@ -7,9 +7,16 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "declaration": true,
+    "rootDir": ".",
     "outDir": "./dist"
   },
+  "include": [
+    "./src/*",
+    "./test/*",
+    "./typings/*"       
+  ],
   "exclude": [
-    "node_modules"
+    "./node_modules",
+    ".vscode"
   ]
 }

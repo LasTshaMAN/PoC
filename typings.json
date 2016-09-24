@@ -1,0 +1,12 @@
+{
+  "name": "rtf_config_sersioning_service",
+  "globalDevDependencies": {
+    "mocha": "registry:dt/mocha#2.2.5+20160720003353"
+  },
+  "dependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160723033700"
+  },
+  "globalDependencies": {
+    "express": "registry:dt/express#4.0.0+20160708185218"
+  }
+}

@@ -1,6 +1,6 @@
+import { Calculator } from './../src/Calculator';
 import { expect } from 'chai';
 
-import { Calculator } from '../src/Calculator'
 
 describe('CalculatorTest', () => {
 
