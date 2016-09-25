@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "compile": "tsc",    
-    "pretest": "cleandir ./dist",
-    "test": "tsc && mocha ./dist/test/*.js"
+    "clean": "cleandir ./dist",
+    "compile": "npm run clean && tsc",
+    "pretest": "npm run clean",
+    "test": "tsc && mocha ./dist/test/*.js",
+    "debug": "mocha --debug-brk"
   },
   "devDependencies": {
     "chai": "^3.5.0",

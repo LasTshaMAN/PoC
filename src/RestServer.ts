@@ -1,5 +1,6 @@
 import * as express from "express";
 
+
 export default class RestServer {
 
     private readonly app: express.Application;

@@ -1,6 +1,5 @@
 import * as request from "request";
 import { expect } from 'chai';
-import { IncomingMessage, createServer } from "http";
 import RestServer from "../src/RestServer";
 
 
@@ -15,7 +14,7 @@ describe('Testing REST API', () => {
     });
 
     it('should have an endpoint for demonstration purposes', (done) => {
-        request.get(url + "/hello", (error: any, response: IncomingMessage, body: any) => {
+        request.get(url + "/hello", (error, response, body) => {
             expect(response.statusCode).equal(200);
             done();
         });
