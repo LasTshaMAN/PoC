@@ -33,7 +33,9 @@ export default class RestServer {
         this.app.use('/status', (req, res) => {
             res.status(200);
             res.contentType('json');
-            res.json(this.statusDataService.getStatuses());
+            this.statusDataService.getStatuses((result) => {
+                res.json(result);
+            });
         });
     }
 }

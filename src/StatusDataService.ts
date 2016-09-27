@@ -1,6 +1,15 @@
+import {RedisClient} from "redis";
+
+
 export default class StatusDataService {
 
-    getStatuses(): any {
-        return 'default statuses';
+    redisClient: RedisClient;
+
+    constructor(redisClient: RedisClient) {
+        this.redisClient = redisClient;
+    }
+
+    getStatuses(callback: (result: any) => void): void {
+        this.redisClient.hgetall('statuses', callback);
     }
 }

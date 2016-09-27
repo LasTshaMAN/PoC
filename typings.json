@@ -15,6 +15,8 @@
   "dependencies": {
     "express": "registry:npm/express#4.14.0+20160922175659",
     "form-data": "registry:npm/form-data#1.0.0+20160812072516",
-    "serve-static": "registry:npm/serve-static#1.11.1+20160810053450"
+    "redis": "registry:npm/redis#2.6.0+20160901110043",
+    "serve-static": "registry:npm/serve-static#1.11.1+20160810053450",
+    "sinon": "registry:npm/sinon#1.16.0+20160723033700"
   }
 }

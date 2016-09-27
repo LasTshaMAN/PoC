@@ -6,16 +6,16 @@
     "clean": "cleandir ./dist",
     "compile": "npm run clean && tsc",
     "pretest": "npm run clean",
-    "test": "tsc && mocha ./dist/test/*.js",
-    "debug": "mocha --debug-brk"
+    "test": "tsc && mocha ./dist/test/*.js"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "clean-dir": "^1.0.3",
     "jsmockito": "^1.0.5",
     "mocha": "^3.0.2",
+    "redis-mock": "^0.11.0",
     "request": "^2.75.0",
-    "typemoq": "^0.3.3",
+    "sinon": "^1.17.6",
     "typescript": "^2.0.3"
   },
   "dependencies": {
