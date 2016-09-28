@@ -8,7 +8,8 @@ describe('Testing REST API', () => {
 
     const url = 'http://localhost:3000';
     const statusDataServiceMock = {
-        getStatuses: () => {}
+        getStatuses: () => {},
+        updateStatus: () => {}
     };
     const server = new RestServer(<any> statusDataServiceMock);
 
@@ -43,13 +44,56 @@ describe('Testing REST API', () => {
                 }
             },
         ];
-        statusDataServiceMock.getStatuses = sinon.stub().withArgs(sinon.match.func).callsArgWith(0, statuses);
+        statusDataServiceMock.getStatuses = sinon.stub()
+            .withArgs(sinon.match.func)
+            .callsArgWith(0, statuses);
 
-        request.get(url + '/status', (error, response, body) => {
+        request.get(url + '/statuses', (error, response, body) => {
             expect(response.statusCode).to.equal(200);
             expect(JSON.parse(body)).to.deep.equal(statuses);
 
             done();
+        });
+    });
+
+    describe('should provide an endpoint for registering new or updating existing rtf status', () => {
+
+        it('should allow for status with error payload', (done) => {
+            let status = {
+                rtf_instance_name: 'rtf-2',
+                current_config_version: '2',
+                trying_to_apply_config: {
+                    config_version: '3',
+                    error_message: 'Unable to create HTTP adapter. Port 8080 is unavailable.'
+                }
+            };
+            statusDataServiceMock.updateStatus = sinon.stub()
+                .withArgs(status, sinon.match.func)
+                .callsArg(1);
+
+            request.put(url + '/update_status', {json: status}, (error, response, body) => {
+                expect(response.statusCode).to.equal(200);
+                sinon.assert.calledWith(<any> statusDataServiceMock.updateStatus, status, sinon.match.func);
+
+                done();
+            });
+        });
+
+        it('should allow for status without error payload', (done) => {
+            let status = {
+                rtf_instance_name: 'rtf-2',
+                current_config_version: '2'
+            };
+            statusDataServiceMock.updateStatus = sinon.stub()
+                .withArgs(status, sinon.match.func)
+                .callsArg(1);
+
+            request.put(url + '/update_status', {json: status}, (error, response, body) => {
+                expect(response.statusCode).to.equal(200);
+                sinon.assert.calledWith(<any> statusDataServiceMock.updateStatus, status, sinon.match.func);
+
+                done();
+            });
         });
     });
 });
