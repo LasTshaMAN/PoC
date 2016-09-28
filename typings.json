@@ -2,21 +2,18 @@
   "name": "rtf_config_sersioning_service",
   "globalDevDependencies": {
     "mocha": "registry:dt/mocha#2.2.5+20160720003353",
-    "request": "registry:dt/request#0.0.0+20160726020908",
     "typescript": "registry:dt/typescript#0.4.0+20160317120654"
   },
   "devDependencies": {
     "chai": "registry:npm/chai#3.5.0+20160723033700"
   },
   "globalDependencies": {
-    "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160923124352",
     "node": "registry:dt/node#6.0.0+20160923124626"
   },
   "dependencies": {
-    "express": "registry:npm/express#4.14.0+20160922175659",
-    "form-data": "registry:npm/form-data#1.0.0+20160812072516",
+    "express": "registry:npm/express#4.14.0+20160925001530",
     "redis": "registry:npm/redis#2.6.0+20160901110043",
-    "serve-static": "registry:npm/serve-static#1.11.1+20160810053450",
+    "request": "registry:npm/request#2.69.0+20160428223725",
     "sinon": "registry:npm/sinon#1.16.0+20160723033700"
   }
 }

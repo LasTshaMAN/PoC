@@ -33,6 +33,7 @@ describe('Testing StatusDataService', () => {
 
 
         expect(actualStatuses).to.deep.equal(expectedStatuses);
+        
         done();
     });
 });
