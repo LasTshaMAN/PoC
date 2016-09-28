@@ -6,8 +6,10 @@ import * as sinon from 'sinon';
 describe('Testing StatusDataService', () => {
 
     const redisMock = {
-        hgetall: () => {},
-        hset: () => {}
+        hvals: () => {
+        },
+        hset: () => {
+        }
     };
     const statusDataService = new StatusDataService(<any> redisMock);
 
@@ -27,18 +29,19 @@ describe('Testing StatusDataService', () => {
                 }
             },
         ];
-        redisMock.hgetall = sinon.stub()
-            .withArgs('statuses', sinon.match.func)
-            .callsArgWith(1, expectedStatuses);
-
-
-        statusDataService.getStatuses((result) => {
+        let callback = (result) => {
             actualStatuses = result;
+        };
+        sinon.stub(redisMock, 'hvals', () => {
+            callback(expectedStatuses);
         });
 
 
+        statusDataService.getStatuses(callback);
+
+
         expect(actualStatuses).to.deep.equal(expectedStatuses);
-        
+
         done();
     });
 
