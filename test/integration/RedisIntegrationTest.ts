@@ -1,9 +1,9 @@
 import * as console from 'request';
 import * as rtf from 'request';
-import RestServer from '../src/RestServer';
+import RestServer from '../../src/RestServer';
 import {expect} from 'chai';
 import * as redis from "redis";
-import StatusDataService from "../src/StatusDataService";
+import StatusDataService from "../../src/StatusDataService";
 
 
 describe('Testing integration with Redis', () => {
@@ -34,9 +34,8 @@ describe('Testing integration with Redis', () => {
                 error_message: 'Unable to create HTTP adapter. Port 8080 is unavailable.'
             }
         };
-
-        rtf.put(url + '/update_status', {json: firstStatus});
-        rtf.put(url + '/update_status', {json: secondStatus});
+        rtf.put(url + '/status', {json: firstStatus});
+        rtf.put(url + '/status', {json: secondStatus});
 
         console.get(url + '/statuses', (error, response, body) => {
             expect(response.statusCode).to.equal(200);
@@ -60,14 +59,19 @@ describe('Testing integration with Redis', () => {
             rtf_instance_name: 'rtf-1',
             current_config_version: '3'
         };
-
-        rtf.put(url + '/update_status', {json: oldStatus});
-        rtf.put(url + '/update_status', {json: newStatus});
+        let someUnrelatedStatus = {
+            rtf_instance_name: 'rtf-2',
+            current_config_version: '2'
+        };
+        rtf.put(url + '/status', {json: oldStatus});
+        rtf.put(url + '/status', {json: someUnrelatedStatus});
+        rtf.put(url + '/status', {json: newStatus});
 
         console.get(url + '/statuses', (error, response, body) => {
             expect(response.statusCode).to.equal(200);
             expect(JSON.parse(body)).to.not.deep.include(oldStatus);
             expect(JSON.parse(body)).to.deep.include(newStatus);
+            expect(JSON.parse(body)).to.deep.include(someUnrelatedStatus);
 
             done();
         });

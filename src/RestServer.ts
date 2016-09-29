@@ -42,7 +42,7 @@ export default class RestServer {
             });
         });
 
-        this.app.put('/update_status', (req: bodyParser.ParsedAsJson, res) => {
+        this.app.put('/status', (req: bodyParser.ParsedAsJson, res) => {
             let newStatus = req.body;
             this.statusDataService.updateStatus(newStatus, () => {
                 res.status(200);

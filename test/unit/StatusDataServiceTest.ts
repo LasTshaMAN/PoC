@@ -1,4 +1,4 @@
-import StatusDataService from "../src/StatusDataService";
+import StatusDataService from "../../src/StatusDataService";
 import {expect} from "chai";
 import * as sinon from 'sinon';
 

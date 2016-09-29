@@ -5,8 +5,9 @@
   "scripts": {
     "clean": "cleandir ./dist",
     "compile": "npm run clean && tsc",
-    "pretest": "npm run clean",
-    "test": "tsc && mocha ./dist/test/*.js"
+    "test": "npm run compile && mocha ./dist/test/unit/*.js",
+    "test-integration": "npm run compile && mocha ./dist/test/integration/*.js",
+    "start-server": "npm run compile && node ./dist/src/App.js"
   },
   "devDependencies": {
     "chai": "^3.5.0",

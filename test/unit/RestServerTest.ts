@@ -1,5 +1,5 @@
 import * as request from 'request';
-import RestServer from '../src/RestServer';
+import RestServer from '../../src/RestServer';
 import {expect} from 'chai';
 import * as sinon from 'sinon';
 
@@ -71,7 +71,7 @@ describe('Testing REST API', () => {
                 .withArgs(status, sinon.match.func)
                 .callsArg(1);
 
-            request.put(url + '/update_status', {json: status}, (error, response, body) => {
+            request.put(url + '/status', {json: status}, (error, response, body) => {
                 expect(response.statusCode).to.equal(200);
                 sinon.assert.calledWith(<any> statusDataServiceMock.updateStatus, status, sinon.match.func);
 
@@ -88,7 +88,7 @@ describe('Testing REST API', () => {
                 .withArgs(status, sinon.match.func)
                 .callsArg(1);
 
-            request.put(url + '/update_status', {json: status}, (error, response, body) => {
+            request.put(url + '/status', {json: status}, (error, response, body) => {
                 expect(response.statusCode).to.equal(200);
                 sinon.assert.calledWith(<any> statusDataServiceMock.updateStatus, status, sinon.match.func);
 
