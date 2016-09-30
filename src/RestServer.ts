@@ -1,7 +1,7 @@
-import * as express from 'express';
+import * as express from "express";
 import StatusDataService from "./StatusDataService";
 import {Server} from "http";
-import * as bodyParser from 'body-parser';
+import * as bodyParser from "body-parser";
 
 
 export default class RestServer {
@@ -28,13 +28,7 @@ export default class RestServer {
 
         this.app.use(bodyParser.json());
 
-        this.app.get('/hello', (req, res) => {
-            res.status(200);
-            res.contentType('json');
-            res.json('Hello');
-        });
-
-        this.app.get('/statuses', (req, res) => {
+        this.app.get('/v1/statuses', (req, res) => {
             this.statusDataService.getStatuses((result) => {
                 res.status(200);
                 res.contentType('json');
@@ -42,7 +36,7 @@ export default class RestServer {
             });
         });
 
-        this.app.put('/status', (req: bodyParser.ParsedAsJson, res) => {
+        this.app.put('/v1/status', (req: bodyParser.ParsedAsJson, res) => {
             let newStatus = req.body;
             this.statusDataService.updateStatus(newStatus, () => {
                 res.status(200);

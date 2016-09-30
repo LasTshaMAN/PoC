@@ -1,6 +1,6 @@
 import StatusDataService from "../../src/StatusDataService";
 import {expect} from "chai";
-import * as sinon from 'sinon';
+import * as sinon from "sinon";
 
 
 describe('Testing StatusDataService', () => {
