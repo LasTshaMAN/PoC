@@ -1,4 +1,4 @@
-import {testIntegrationWithRedisUsing} from "../subsidiary_entities/RedisIntegrationTest";
+import {testIntegrationWithRedisUsing} from "../auxiliary_stuff/RedisIntegrationTest";
 import * as redis from "redis";
 
 
