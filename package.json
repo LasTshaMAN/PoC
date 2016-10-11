@@ -16,7 +16,6 @@
     "clean-dir": "^1.0.3",
     "mocha": "^3.0.2",
     "redis-mock": "^0.11.0",
-    "request": "^2.75.0",
     "sinon": "^1.17.6",
     "typescript": "^2.0.3",
     "typings": "^1.4.0"
@@ -24,6 +23,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "redis": "^2.6.2"
+    "redis": "^2.6.2",
+    "web-request": "^1.0.6"
   }
 }

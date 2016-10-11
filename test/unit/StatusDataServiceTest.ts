@@ -14,7 +14,6 @@ describe('Testing StatusDataService', () => {
     const statusDataService = new StatusDataService(<any> redisMock);
 
     it('should return RTF configuration statuses as an array of ConfigurationStatus objects', (done) => {
-        let actualStatuses = '';
         let expectedStatuses = [
             {
                 rtf_instance_name: 'rtf-1',
@@ -29,20 +28,18 @@ describe('Testing StatusDataService', () => {
                 }
             },
         ];
-        let callback = (result) => {
-            actualStatuses = result;
-        };
-        sinon.stub(redisMock, 'hvals', () => {
-            callback(expectedStatuses);
+        let statusesReturnedByRedis = expectedStatuses.map((value) => {
+            return JSON.stringify(value);
         });
+        redisMock.hvals = sinon.stub()
+            .withArgs('statuses', sinon.match.func)
+            .callsArgWith(1, null, statusesReturnedByRedis);
 
+        statusDataService.getStatuses((result) => {
+            expect(result).to.deep.equal(expectedStatuses);
 
-        statusDataService.getStatuses(callback);
-
-
-        expect(actualStatuses).to.deep.equal(expectedStatuses);
-
-        done();
+            done();
+        });
     });
 
     it('should register new status or update the existing one', (done) => {
@@ -55,15 +52,11 @@ describe('Testing StatusDataService', () => {
             }
         };
         redisMock.hset = sinon.stub()
-            .withArgs('statuses', sinon.match.string, status, sinon.match.func)
+            .withArgs('statuses', 'rtf-2', status, sinon.match.func)
             .callsArg(3);
-        let callback = sinon.spy();
 
-        statusDataService.updateStatus(status, callback);
-
-        sinon.assert.calledOnce(<any> redisMock.hset);
-        sinon.assert.calledOnce(callback);
-
-        done();
+        statusDataService.updateStatus(status, () => {
+            done();
+        });
     });
 });

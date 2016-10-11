@@ -1,4 +1,4 @@
-import * as request from "request";
+import * as request from "web-request";
 import RestServer from "../../src/RestServer";
 import {expect} from "chai";
 import * as sinon from "sinon";
@@ -23,7 +23,7 @@ describe('Testing REST API', () => {
         server.stop();
     });
 
-    it('should provide an endpoint for polling configuration statuses', (done) => {
+    it('should provide an endpoint for polling configuration statuses', async () => {
         let statuses = [
             {
                 rtf_instance_name: 'rtf-1',
@@ -42,17 +42,17 @@ describe('Testing REST API', () => {
             .withArgs(sinon.match.func)
             .callsArgWith(0, statuses);
 
-        request.get(api + '/v1/statuses', (error, response, body) => {
-            expect(response.statusCode).to.equal(200);
-            expect(JSON.parse(body)).to.deep.equal(statuses);
+        let result = await request.get(api + '/v1/statuses');
+        let statusCode = result.statusCode;
+        let content = JSON.parse(result.content);
 
-            done();
-        });
+        expect(statusCode).to.equal(200);
+        expect(content).to.deep.equal(statuses);
     });
 
     describe('should provide an endpoint for registering new or updating existing rtf status', () => {
 
-        it('should allow for status with error payload', (done) => {
+        it('should allow for status with error payload', async () => {
             let status = {
                 rtf_instance_name: 'rtf-2',
                 current_config_version: '2',
@@ -65,15 +65,13 @@ describe('Testing REST API', () => {
                 .withArgs(status, sinon.match.func)
                 .callsArg(1);
 
-            request.put(api + '/v1/status', {json: status}, (error, response) => {
-                expect(response.statusCode).to.equal(200);
-                sinon.assert.calledWith(<any> statusDataServiceMock.updateStatus, status, sinon.match.func);
+            let result = await request.put(api + '/v1/status', {json: status});
+            let statusCode = result.statusCode;
 
-                done();
-            });
+            expect(statusCode).to.equal(200);
         });
 
-        it('should allow for status without error payload', (done) => {
+        it('should allow for status without error payload', async () => {
             let status = {
                 rtf_instance_name: 'rtf-2',
                 current_config_version: '2'
@@ -82,12 +80,10 @@ describe('Testing REST API', () => {
                 .withArgs(status, sinon.match.func)
                 .callsArg(1);
 
-            request.put(api + '/v1/status', {json: status}, (error, response) => {
-                expect(response.statusCode).to.equal(200);
-                sinon.assert.calledWith(<any> statusDataServiceMock.updateStatus, status, sinon.match.func);
+            let result = await request.put(api + '/v1/status', {json: status});
+            let statusCode = result.statusCode;
 
-                done();
-            });
+            expect(statusCode).to.equal(200);
         });
     });
 });
