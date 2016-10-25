@@ -14,6 +14,7 @@
     "body-parser": "registry:npm/body-parser#1.15.2+20160815132839",
     "express": "registry:npm/express#4.14.0+20160925001530",
     "redis": "registry:npm/redis#2.6.0+20160901110043",
+    "request": "registry:npm/request#2.69.0+20160428223725",
     "sinon": "registry:npm/sinon#1.16.0+20160723033700"
   }
 }
